@@ -3,4 +3,22 @@ BrowserPlus Build Templates
 This project provides a framework for easy authoring of BrowserPlus
 services.
 
-.
+An example service based on this framework may be found at:
+http://github.com/browserplus/bp-pubsub.
+
+
+To use this framework:
+
+1) Either download the files or setup bp-service-framework as a git
+submodule of your project.  The projects listed above demonstrate the git
+submodule approach.
+
+2) If you use CMake to build your service, you may find it convenient for
+your CMakeLists.txt to include cmake/BuildConfigs.cmake to setup
+some default compiler/linker settings.
+
+3) If you use Ant to automate building your service, you may find it convenient
+for your build.xml files to include ant/build.xml to setup standard ways
+of building, instrumenting, and/or testsing your service.
+
+
