@@ -64,7 +64,8 @@
         <delete dir="providerDir" />
     </target>
     <target name="clean_vc08_codecoverage" if="is.windows">
-        <!-- NO-OP -->
+        <delete file="unittest.xml" />
+        <delete dir="providerDir" />
     </target>
     <target name="clean_vc08_debug" if="is.windows">
         <delete file="unittest.xml" />
@@ -126,7 +127,15 @@
         </exec>
     </target>
     <target name="unittest_vc08_codecoverage" if="is.windows">
-        <!-- NO-OP -->
+        <delete file="x1.bat" />
+        <echo file="x1.bat">@echo off
+set BP_OUTPUT_DIR=build/${ServiceDirectory_vc08_debug}
+ruby .\unittest.rb --runner cppunit_runner
+        </echo>
+        <exec executable="cmd" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="x1.bat" />
     </target>
     <target name="unittest_vc08_debug" if="is.windows">
         <delete file="x1.bat" />
