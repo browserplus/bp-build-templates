@@ -25,10 +25,19 @@
     <target name="clean_make_release" unless="is.windows">
         <delete dir="../build_release" />
     </target>
+    <target name="clean_vc05_codecoverage" if="is.windows">
+        <delete dir="../build" />
+    </target>
     <target name="clean_vc08_codecoverage" if="is.windows">
         <delete dir="../build" />
     </target>
+    <target name="clean_vc05_debug" if="is.windows">
+        <delete dir="../build" />
+    </target>
     <target name="clean_vc08_debug" if="is.windows">
+        <delete dir="../build" />
+    </target>
+    <target name="clean_vc05_release" if="is.windows">
         <delete dir="../build" />
     </target>
     <target name="clean_vc08_release" if="is.windows">
@@ -61,6 +70,30 @@
             <arg line="-j3" />
         </exec>
     </target>
+    <target name="build_vc05_codecoverage" if="is.windows">
+        <mkdir dir="../build" />
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+cmake -G "Visual Studio 8 2005" ..\src
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+    </target>
     <target name="build_vc08_codecoverage" if="is.windows">
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
@@ -76,6 +109,30 @@ cmake -G "Visual Studio 9 2008" ..\src
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
 call "C:\Program Files\Microsoft Visual Studio 9.0\vc\bin\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+    </target>
+    <target name="build_vc05_debug" if="is.windows">
+        <mkdir dir="../build" />
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+cmake -G "Visual Studio 8 2005" ..\src
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
 devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
@@ -103,6 +160,30 @@ call "C:\Program Files\Microsoft Visual Studio 9.0\vc\bin\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
 devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+    </target>
+    <target name="build_vc05_release" if="is.windows">
+        <mkdir dir="../build" />
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+cmake -G "Visual Studio 8 2005" ..\src
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+devenv ${ServiceSolution}.sln /Build Release /Project ALL_BUILD
         </echo>
         <exec executable="cmd" dir="../build" failonerror="true">
             <arg line="/C x1.bat" />
@@ -142,10 +223,19 @@ devenv ${ServiceSolution}.sln /Build Release /Project ALL_BUILD
     <target name="unittest_make_release" unless="is.windows">
         <!-- NO-OP -->
     </target>
+    <target name="unittest_vc05_codecoverage" if="is.windows">
+        <!-- NO-OP -->
+    </target>
     <target name="unittest_vc08_codecoverage" if="is.windows">
         <!-- NO-OP -->
     </target>
+    <target name="unittest_vc05_debug" if="is.windows">
+        <!-- NO-OP -->
+    </target>
     <target name="unittest_vc08_debug" if="is.windows">
+        <!-- NO-OP -->
+    </target>
+    <target name="unittest_vc05_release" if="is.windows">
         <!-- NO-OP -->
     </target>
     <target name="unittest_vc08_release" if="is.windows">
