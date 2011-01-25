@@ -74,7 +74,7 @@
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
+call "C:\Program Files\Microsoft Visual Studio 8\vc\bin\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
 cmake -G "Visual Studio 8 2005" ..\src
@@ -84,7 +84,7 @@ cmake -G "Visual Studio 8 2005" ..\src
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
+call "C:\Program Files\Microsoft Visual Studio 8\vc\bin\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
 devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
@@ -122,7 +122,7 @@ devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
+call "C:\Program Files\Microsoft Visual Studio 8\vc\bin\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
 cmake -G "Visual Studio 8 2005" ..\src
@@ -132,7 +132,7 @@ cmake -G "Visual Studio 8 2005" ..\src
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
+call "C:\Program Files\Microsoft Visual Studio 8\vc\bin\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
 devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
@@ -170,7 +170,7 @@ devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
+call "C:\Program Files\Microsoft Visual Studio 8\vc\bin\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
 cmake -G "Visual Studio 8 2005" ..\src
@@ -180,7 +180,7 @@ cmake -G "Visual Studio 8 2005" ..\src
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-call "C:\Program Files\Microsoft Visual Studio 8.0\vc\bin\vcvars32.bat"
+call "C:\Program Files\Microsoft Visual Studio 8\vc\bin\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
 devenv ${ServiceSolution}.sln /Build Release /Project ALL_BUILD
