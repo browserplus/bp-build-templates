@@ -74,8 +74,8 @@
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 8\vc\bin"
-if not "%VS80COMNTOOLS%"*==* set VSDIR="%VS80COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 8\vc\bin
+if not "%VS80COMNTOOLS%"*==* set VSDIR=%VS80COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -86,8 +86,8 @@ cmake -G "Visual Studio 8 2005" ..\src
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 8\vc\bin"
-if not "%VS80COMNTOOLS%"*==* set VSDIR="%VS80COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 8\vc\bin
+if not "%VS80COMNTOOLS%"*==* set VSDIR=%VS80COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -102,8 +102,8 @@ devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 9.0\vc\bin"
-if not "%VS90COMNTOOLS%"*==* set VSDIR="%VS90COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -114,8 +114,8 @@ cmake -G "Visual Studio 9 2008" ..\src
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 9.0\vc\bin"
-if not "%VS90COMNTOOLS%"*==* set VSDIR="%VS90COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -130,8 +130,8 @@ devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 8\vc\bin"
-if not "%VS80COMNTOOLS%"*==* set VSDIR="%VS80COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 8\vc\bin
+if not "%VS80COMNTOOLS%"*==* set VSDIR=%VS80COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -142,8 +142,8 @@ cmake -G "Visual Studio 8 2005" ..\src
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 8\vc\bin"
-if not "%VS80COMNTOOLS%"*==* set VSDIR="%VS80COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 8\vc\bin
+if not "%VS80COMNTOOLS%"*==* set VSDIR=%VS80COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -158,8 +158,8 @@ devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 9.0\vc\bin"
-if not "%VS90COMNTOOLS%"*==* set VSDIR="%VS90COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -170,8 +170,8 @@ cmake -G "Visual Studio 9 2008" ..\src
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 9.0\vc\bin"
-if not "%VS90COMNTOOLS%"*==* set VSDIR="%VS90COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -186,8 +186,8 @@ devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 8\vc\bin"
-if not "%VS80COMNTOOLS%"*==* set VSDIR="%VS80COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 8\vc\bin
+if not "%VS80COMNTOOLS%"*==* set VSDIR=%VS80COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -198,8 +198,8 @@ cmake -G "Visual Studio 8 2005" ..\src
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 8\vc\bin"
-if not "%VS80COMNTOOLS%"*==* set VSDIR="%VS80COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 8\vc\bin
+if not "%VS80COMNTOOLS%"*==* set VSDIR=%VS80COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -214,8 +214,8 @@ devenv ${ServiceSolution}.sln /Build Release /Project ALL_BUILD
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 9.0\vc\bin"
-if not "%VS90COMNTOOLS%"*==* set VSDIR="%VS90COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -226,8 +226,8 @@ cmake -G "Visual Studio 9 2008" ..\src
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR="C:\Program Files\Microsoft Visual Studio 9.0\vc\bin"
-if not "%VS90COMNTOOLS%"*==* set VSDIR="%VS90COMNTOOLS%\..\..\vc\bin"
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
