@@ -1,65 +1,9 @@
 <project name="unittest_template" default="build_release">
     <property file="../build.properties" />
-    <fail message="ServiceDirectory_make_codecoverage property not set">
+    <fail message="ServiceName property not set">
         <condition>
             <not>
-                <isset property="ServiceDirectory_make_codecoverage"/>
-            </not>
-        </condition>
-    </fail>
-    <fail message="ServiceDirectory_make_debug property not set">
-        <condition>
-            <not>
-                <isset property="ServiceDirectory_make_debug"/>
-            </not>
-        </condition>
-    </fail>
-    <fail message="ServiceDirectory_make_release property not set">
-        <condition>
-            <not>
-                <isset property="ServiceDirectory_make_release"/>
-            </not>
-        </condition>
-    </fail>
-    <fail message="ServiceDirectory_vc05_codecoverage property not set">
-        <condition>
-            <not>
-                <isset property="ServiceDirectory_vc05_codecoverage"/>
-            </not>
-        </condition>
-    </fail>
-    <fail message="ServiceDirectory_vc08_codecoverage property not set">
-        <condition>
-            <not>
-                <isset property="ServiceDirectory_vc08_codecoverage"/>
-            </not>
-        </condition>
-    </fail>
-    <fail message="ServiceDirectory_vc05_debug property not set">
-        <condition>
-            <not>
-                <isset property="ServiceDirectory_vc05_debug"/>
-            </not>
-        </condition>
-    </fail>
-    <fail message="ServiceDirectory_vc08_debug property not set">
-        <condition>
-            <not>
-                <isset property="ServiceDirectory_vc08_debug"/>
-            </not>
-        </condition>
-    </fail>
-    <fail message="ServiceDirectory_vc05_release property not set">
-        <condition>
-            <not>
-                <isset property="ServiceDirectory_vc05_release"/>
-            </not>
-        </condition>
-    </fail>
-    <fail message="ServiceDirectory_vc08_release property not set">
-        <condition>
-            <not>
-                <isset property="ServiceDirectory_vc08_release"/>
+                <isset property="ServiceName"/>
             </not>
         </condition>
     </fail>
@@ -92,6 +36,10 @@
         <delete file="unittest.xml" />
         <delete dir="providerDir" />
     </target>
+    <target name="clean_vc10_codecoverage" if="is.windows">
+        <delete file="unittest.xml" />
+        <delete dir="providerDir" />
+    </target>
     <target name="clean_vc05_debug" if="is.windows">
         <delete file="unittest.xml" />
         <delete dir="providerDir" />
@@ -100,11 +48,19 @@
         <delete file="unittest.xml" />
         <delete dir="providerDir" />
     </target>
+    <target name="clean_vc10_debug" if="is.windows">
+        <delete file="unittest.xml" />
+        <delete dir="providerDir" />
+    </target>
     <target name="clean_vc05_release" if="is.windows">
         <delete file="unittest.xml" />
         <delete dir="providerDir" />
     </target>
     <target name="clean_vc08_release" if="is.windows">
+        <delete file="unittest.xml" />
+        <delete dir="providerDir" />
+    </target>
+    <target name="clean_vc10_release" if="is.windows">
         <delete file="unittest.xml" />
         <delete dir="providerDir" />
     </target>
@@ -123,10 +79,16 @@
     <target name="build_vc08_codecoverage" if="is.windows">
         <!-- NO-OP -->
     </target>
+    <target name="build_vc10_codecoverage" if="is.windows">
+        <!-- NO-OP -->
+    </target>
     <target name="build_vc05_debug" if="is.windows">
         <!-- NO-OP -->
     </target>
     <target name="build_vc08_debug" if="is.windows">
+        <!-- NO-OP -->
+    </target>
+    <target name="build_vc10_debug" if="is.windows">
         <!-- NO-OP -->
     </target>
     <target name="build_vc05_release" if="is.windows">
@@ -135,12 +97,15 @@
     <target name="build_vc08_release" if="is.windows">
         <!-- NO-OP -->
     </target>
+    <target name="build_vc10_release" if="is.windows">
+        <!-- NO-OP -->
+    </target>
     <target name="unittest_make_codecoverage" unless="is.windows">
         <exec executable="lcov" dir="../build_codecoverage">
             <arg line="--directory CMakeFiles/${ServiceName}.dir --zerocounters" />
         </exec>
         <exec executable="ruby" failonerror="true">
-            <env key="BP_OUTPUT_DIR" value="build_codecoverage/${ServiceDirectory_make_codecoverage}" />
+            <env key="BP_OUTPUT_DIR" value="build_codecoverage/${ServiceName}" />
             <arg line="./unittest.rb --runner cppunit_runner" />
         </exec>
         <delete dir="../build_codecoverage/lcov_results" />
@@ -158,20 +123,20 @@
     </target>
     <target name="unittest_make_debug" unless="is.windows">
         <exec executable="ruby" failonerror="true">
-            <env key="BP_OUTPUT_DIR" value="build_debug/${ServiceDirectory_make_debug}" />
+            <env key="BP_OUTPUT_DIR" value="build_debug/${ServiceName}" />
             <arg line="./unittest.rb --runner cppunit_runner" />
         </exec>
     </target>
     <target name="unittest_make_release" unless="is.windows">
         <exec executable="ruby" failonerror="true">
-            <env key="BP_OUTPUT_DIR" value="build_release/${ServiceDirectory_make_release}" />
+            <env key="BP_OUTPUT_DIR" value="build_release/${ServiceName}" />
             <arg line="./unittest.rb --runner cppunit_runner" />
         </exec>
     </target>
     <target name="unittest_vc05_codecoverage" if="is.windows">
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
-set BP_OUTPUT_DIR=build/${ServiceDirectory_vc05_debug}
+set BP_OUTPUT_DIR=build/${ServiceName}
 ruby .\unittest.rb --runner cppunit_runner
         </echo>
         <exec executable="cmd" failonerror="true">
@@ -182,7 +147,18 @@ ruby .\unittest.rb --runner cppunit_runner
     <target name="unittest_vc08_codecoverage" if="is.windows">
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
-set BP_OUTPUT_DIR=build/${ServiceDirectory_vc08_debug}
+set BP_OUTPUT_DIR=build/${ServiceName}
+ruby .\unittest.rb --runner cppunit_runner
+        </echo>
+        <exec executable="cmd" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="x1.bat" />
+    </target>
+    <target name="unittest_vc10_codecoverage" if="is.windows">
+        <delete file="x1.bat" />
+        <echo file="x1.bat">@echo off
+set BP_OUTPUT_DIR=build/${ServiceName}
 ruby .\unittest.rb --runner cppunit_runner
         </echo>
         <exec executable="cmd" failonerror="true">
@@ -193,7 +169,7 @@ ruby .\unittest.rb --runner cppunit_runner
     <target name="unittest_vc05_debug" if="is.windows">
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
-set BP_OUTPUT_DIR=build/${ServiceDirectory_vc05_debug}
+set BP_OUTPUT_DIR=build/${ServiceName}
 ruby .\unittest.rb --runner cppunit_runner
         </echo>
         <exec executable="cmd" failonerror="true">
@@ -204,7 +180,18 @@ ruby .\unittest.rb --runner cppunit_runner
     <target name="unittest_vc08_debug" if="is.windows">
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
-set BP_OUTPUT_DIR=build/${ServiceDirectory_vc08_debug}
+set BP_OUTPUT_DIR=build/${ServiceName}
+ruby .\unittest.rb --runner cppunit_runner
+        </echo>
+        <exec executable="cmd" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="x1.bat" />
+    </target>
+    <target name="unittest_vc10_debug" if="is.windows">
+        <delete file="x1.bat" />
+        <echo file="x1.bat">@echo off
+set BP_OUTPUT_DIR=build/${ServiceName}
 ruby .\unittest.rb --runner cppunit_runner
         </echo>
         <exec executable="cmd" failonerror="true">
@@ -215,7 +202,7 @@ ruby .\unittest.rb --runner cppunit_runner
     <target name="unittest_vc05_release" if="is.windows">
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
-set BP_OUTPUT_DIR=build/${ServiceDirectory_vc05_release}
+set BP_OUTPUT_DIR=build/${ServiceName}
 ruby .\unittest.rb --runner cppunit_runner
         </echo>
         <exec executable="cmd" failonerror="true">
@@ -226,7 +213,18 @@ ruby .\unittest.rb --runner cppunit_runner
     <target name="unittest_vc08_release" if="is.windows">
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
-set BP_OUTPUT_DIR=build/${ServiceDirectory_vc08_release}
+set BP_OUTPUT_DIR=build/${ServiceName}
+ruby .\unittest.rb --runner cppunit_runner
+        </echo>
+        <exec executable="cmd" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="x1.bat" />
+    </target>
+    <target name="unittest_vc10_release" if="is.windows">
+        <delete file="x1.bat" />
+        <echo file="x1.bat">@echo off
+set BP_OUTPUT_DIR=build/${ServiceName}
 ruby .\unittest.rb --runner cppunit_runner
         </echo>
         <exec executable="cmd" failonerror="true">

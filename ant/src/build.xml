@@ -31,16 +31,25 @@
     <target name="clean_vc08_codecoverage" if="is.windows">
         <delete dir="../build" />
     </target>
+    <target name="clean_vc10_codecoverage" if="is.windows">
+        <delete dir="../build" />
+    </target>
     <target name="clean_vc05_debug" if="is.windows">
         <delete dir="../build" />
     </target>
     <target name="clean_vc08_debug" if="is.windows">
         <delete dir="../build" />
     </target>
+    <target name="clean_vc10_debug" if="is.windows">
+        <delete dir="../build" />
+    </target>
     <target name="clean_vc05_release" if="is.windows">
         <delete dir="../build" />
     </target>
     <target name="clean_vc08_release" if="is.windows">
+        <delete dir="../build" />
+    </target>
+    <target name="clean_vc10_release" if="is.windows">
         <delete dir="../build" />
     </target>
     <target name="build_make_codecoverage" unless="is.windows">
@@ -126,6 +135,34 @@ devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
         </exec>
         <delete file="../build/x1.bat" />
     </target>
+    <target name="build_vc10_codecoverage" if="is.windows">
+        <mkdir dir="../build" />
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+call "%VSDIR%\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+cmake -G "Visual Studio 9 2008" ..\src
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+call "%VSDIR%\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+    </target>
     <target name="build_vc05_debug" if="is.windows">
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
@@ -155,6 +192,34 @@ devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
         <delete file="../build/x1.bat" />
     </target>
     <target name="build_vc08_debug" if="is.windows">
+        <mkdir dir="../build" />
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+call "%VSDIR%\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+cmake -G "Visual Studio 9 2008" ..\src
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+call "%VSDIR%\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+    </target>
+    <target name="build_vc10_debug" if="is.windows">
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
@@ -238,6 +303,34 @@ devenv ${ServiceSolution}.sln /Build Release /Project ALL_BUILD
         </exec>
         <delete file="../build/x1.bat" />
     </target>
+    <target name="build_vc10_release" if="is.windows">
+        <mkdir dir="../build" />
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+call "%VSDIR%\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+cmake -G "Visual Studio 9 2008" ..\src
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+        <echo file="../build/x1.bat">@echo off
+set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
+if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+call "%VSDIR%\vcvars32.bat"
+if not %WINTEMP%*==* set TEMP=%WINTEMP%
+if not %WINTMP%*==* set TMP=%WINTMP%
+devenv ${ServiceSolution}.sln /Build Release /Project ALL_BUILD
+        </echo>
+        <exec executable="cmd" dir="../build" failonerror="true">
+            <arg line="/C x1.bat" />
+        </exec>
+        <delete file="../build/x1.bat" />
+    </target>
     <target name="unittest_make_codecoverage" unless="is.windows">
         <!-- NO-OP -->
     </target>
@@ -253,16 +346,25 @@ devenv ${ServiceSolution}.sln /Build Release /Project ALL_BUILD
     <target name="unittest_vc08_codecoverage" if="is.windows">
         <!-- NO-OP -->
     </target>
+    <target name="unittest_vc10_codecoverage" if="is.windows">
+        <!-- NO-OP -->
+    </target>
     <target name="unittest_vc05_debug" if="is.windows">
         <!-- NO-OP -->
     </target>
     <target name="unittest_vc08_debug" if="is.windows">
         <!-- NO-OP -->
     </target>
+    <target name="unittest_vc10_debug" if="is.windows">
+        <!-- NO-OP -->
+    </target>
     <target name="unittest_vc05_release" if="is.windows">
         <!-- NO-OP -->
     </target>
     <target name="unittest_vc08_release" if="is.windows">
+        <!-- NO-OP -->
+    </target>
+    <target name="unittest_vc10_release" if="is.windows">
         <!-- NO-OP -->
     </target>
     <target name="clean_codecoverage" depends="clean_make_codecoverage,clean_vc08_codecoverage" />
