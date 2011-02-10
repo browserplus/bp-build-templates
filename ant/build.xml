@@ -9,14 +9,6 @@
     <condition property="is.unix">
         <os family="unix" />
     </condition>
-    <target name="update_submodule">
-        <exec executable="git" failonerror="true">
-            <arg line="submodule init" />
-        </exec>
-        <exec executable="git" failonerror="true">
-            <arg line="submodule update" />
-        </exec>
-    </target>
     <target name="clean_make_codecoverage" unless="is.windows">
         <ant dir="external" target="clean_make_codecoverage" />
         <ant dir="src" target="clean_make_codecoverage" />

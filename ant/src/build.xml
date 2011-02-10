@@ -139,20 +139,20 @@ devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
-if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+set VSDIR=C:\Program Files\Microsoft Visual Studio 10.0\vc\bin
+if not "%VS100COMNTOOLS%"*==* set VSDIR=%VS100COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
-cmake -G "Visual Studio 9 2008" ..\src
+cmake -G "Visual Studio 10" ..\src
         </echo>
         <exec executable="cmd" dir="../build" failonerror="true">
             <arg line="/C x1.bat" />
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
-if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+set VSDIR=C:\Program Files\Microsoft Visual Studio 10.0\vc\bin
+if not "%VS100COMNTOOLS%"*==* set VSDIR=%VS100COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -223,20 +223,20 @@ devenv ${ServiceSolution}.sln /Build Debug /Project ALL_BUILD
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
-if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+set VSDIR=C:\Program Files\Microsoft Visual Studio 10.0\vc\bin
+if not "%VS100COMNTOOLS%"*==* set VSDIR=%VS100COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
-cmake -G "Visual Studio 9 2008" ..\src
+cmake -G "Visual Studio 10" ..\src
         </echo>
         <exec executable="cmd" dir="../build" failonerror="true">
             <arg line="/C x1.bat" />
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
-if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+set VSDIR=C:\Program Files\Microsoft Visual Studio 10.0\vc\bin
+if not "%VS100COMNTOOLS%"*==* set VSDIR=%VS100COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
@@ -307,20 +307,20 @@ devenv ${ServiceSolution}.sln /Build Release /Project ALL_BUILD
         <mkdir dir="../build" />
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
-if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+set VSDIR=C:\Program Files\Microsoft Visual Studio 10.0\vc\bin
+if not "%VS100COMNTOOLS%"*==* set VSDIR=%VS100COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
-cmake -G "Visual Studio 9 2008" ..\src
+cmake -G "Visual Studio 10" ..\src
         </echo>
         <exec executable="cmd" dir="../build" failonerror="true">
             <arg line="/C x1.bat" />
         </exec>
         <delete file="../build/x1.bat" />
         <echo file="../build/x1.bat">@echo off
-set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
-if not "%VS90COMNTOOLS%"*==* set VSDIR=%VS90COMNTOOLS%\..\..\vc\bin
+set VSDIR=C:\Program Files\Microsoft Visual Studio 10.0\vc\bin
+if not "%VS100COMNTOOLS%"*==* set VSDIR=%VS100COMNTOOLS%\..\..\vc\bin
 call "%VSDIR%\vcvars32.bat"
 if not %WINTEMP%*==* set TEMP=%WINTEMP%
 if not %WINTMP%*==* set TMP=%WINTMP%
