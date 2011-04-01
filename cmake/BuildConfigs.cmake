@@ -104,6 +104,7 @@ ELSE ()
   # compiler/sdk
   SET(isysrootFlag)
   SET(minVersionFlag)
+  INCLUDE(CMakeForceCompiler)
   IF (APPLE)
     SET(CMAKE_OSX_ARCHITECTURES i386)
     # XXX when 10.4 dropped, remove 10.4 clause
