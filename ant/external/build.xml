@@ -46,21 +46,25 @@
         <delete dir="dist" />
     </target>
     <target name="build_make_codecoverage" unless="is.windows">
+        <delete dir="dist" />
         <exec executable="ruby" failonerror="true">
             <arg line="./build.rb" />
         </exec>
     </target>
     <target name="build_make_debug" unless="is.windows">
+        <delete dir="dist" />
         <exec executable="ruby" failonerror="true">
             <arg line="./build.rb" />
         </exec>
     </target>
     <target name="build_make_release" unless="is.windows">
+        <delete dir="dist" />
         <exec executable="ruby" failonerror="true">
             <arg line="./build.rb" />
         </exec>
     </target>
     <target name="build_vc05_codecoverage" if="is.windows">
+        <delete dir="dist" />
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
 set VSDIR=C:\Program Files\Microsoft Visual Studio 8\vc\bin
@@ -77,6 +81,7 @@ ruby .\build.rb
         <delete file="x1.bat" />
     </target>
     <target name="build_vc08_codecoverage" if="is.windows">
+        <delete dir="dist" />
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
 set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
@@ -93,6 +98,7 @@ ruby .\build.rb
         <delete file="x1.bat" />
     </target>
     <target name="build_vc10_codecoverage" if="is.windows">
+        <delete dir="dist" />
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
 set VSDIR=C:\Program Files\Microsoft Visual Studio 10.0\vc\bin
@@ -109,6 +115,7 @@ ruby .\build.rb
         <delete file="x1.bat" />
     </target>
     <target name="build_vc05_debug" if="is.windows">
+        <delete dir="dist" />
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
 set VSDIR=C:\Program Files\Microsoft Visual Studio 8\vc\bin
@@ -125,6 +132,7 @@ ruby .\build.rb
         <delete file="x1.bat" />
     </target>
     <target name="build_vc08_debug" if="is.windows">
+        <delete dir="dist" />
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
 set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
@@ -141,6 +149,7 @@ ruby .\build.rb
         <delete file="x1.bat" />
     </target>
     <target name="build_vc10_debug" if="is.windows">
+        <delete dir="dist" />
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
 set VSDIR=C:\Program Files\Microsoft Visual Studio 10.0\vc\bin
@@ -157,6 +166,7 @@ ruby .\build.rb
         <delete file="x1.bat" />
     </target>
     <target name="build_vc05_release" if="is.windows">
+        <delete dir="dist" />
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
 set VSDIR=C:\Program Files\Microsoft Visual Studio 8\vc\bin
@@ -173,6 +183,7 @@ ruby .\build.rb
         <delete file="x1.bat" />
     </target>
     <target name="build_vc08_release" if="is.windows">
+        <delete dir="dist" />
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
 set VSDIR=C:\Program Files\Microsoft Visual Studio 9.0\vc\bin
@@ -189,6 +200,7 @@ ruby .\build.rb
         <delete file="x1.bat" />
     </target>
     <target name="build_vc10_release" if="is.windows">
+        <delete dir="dist" />
         <delete file="x1.bat" />
         <echo file="x1.bat">@echo off
 set VSDIR=C:\Program Files\Microsoft Visual Studio 10.0\vc\bin
