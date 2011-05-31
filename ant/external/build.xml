@@ -57,37 +57,37 @@
     <target name="build_make40_codecoverage" unless="is.windows">
         <delete dir="dist" />
         <exec executable="ruby" failonerror="true">
-            <arg line="./build.rb" />
+            <arg line="./build.rb osx10.4" />
         </exec>
     </target>
     <target name="build_make42_codecoverage" unless="is.windows">
         <delete dir="dist" />
         <exec executable="ruby" failonerror="true">
-            <arg line="./build.rb osx10.4" />
+            <arg line="./build.rb" />
         </exec>
     </target>
     <target name="build_make40_debug" unless="is.windows">
         <delete dir="dist" />
         <exec executable="ruby" failonerror="true">
-            <arg line="./build.rb" />
+            <arg line="./build.rb osx10.4" />
         </exec>
     </target>
     <target name="build_make42_debug" unless="is.windows">
         <delete dir="dist" />
         <exec executable="ruby" failonerror="true">
-            <arg line="./build.rb osx10.4" />
+            <arg line="./build.rb" />
         </exec>
     </target>
     <target name="build_make40_release" unless="is.windows">
         <delete dir="dist" />
         <exec executable="ruby" failonerror="true">
-            <arg line="./build.rb" />
+            <arg line="./build.rb osx10.4" />
         </exec>
     </target>
     <target name="build_make42_release" unless="is.windows">
         <delete dir="dist" />
         <exec executable="ruby" failonerror="true">
-            <arg line="./build.rb osx10.4" />
+            <arg line="./build.rb" />
         </exec>
     </target>
     <target name="build_vc05_codecoverage" if="is.windows">
