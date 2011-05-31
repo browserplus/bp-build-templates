@@ -16,15 +16,27 @@
     <condition property="is.unix">
         <os family="unix" />
     </condition>
-    <target name="clean_make_codecoverage" unless="is.windows">
+    <target name="clean_make40_codecoverage" unless="is.windows">
         <delete file="unittest.xml" />
         <delete dir="providerDir" />
     </target>
-    <target name="clean_make_debug" unless="is.windows">
+    <target name="clean_make42_codecoverage" unless="is.windows">
         <delete file="unittest.xml" />
         <delete dir="providerDir" />
     </target>
-    <target name="clean_make_release" unless="is.windows">
+    <target name="clean_make40_debug" unless="is.windows">
+        <delete file="unittest.xml" />
+        <delete dir="providerDir" />
+    </target>
+    <target name="clean_make42_debug" unless="is.windows">
+        <delete file="unittest.xml" />
+        <delete dir="providerDir" />
+    </target>
+    <target name="clean_make40_release" unless="is.windows">
+        <delete file="unittest.xml" />
+        <delete dir="providerDir" />
+    </target>
+    <target name="clean_make42_release" unless="is.windows">
         <delete file="unittest.xml" />
         <delete dir="providerDir" />
     </target>
@@ -64,13 +76,22 @@
         <delete file="unittest.xml" />
         <delete dir="providerDir" />
     </target>
-    <target name="build_make_codecoverage" unless="is.windows">
+    <target name="build_make40_codecoverage" unless="is.windows">
         <!-- NO-OP -->
     </target>
-    <target name="build_make_debug" unless="is.windows">
+    <target name="build_make42_codecoverage" unless="is.windows">
         <!-- NO-OP -->
     </target>
-    <target name="build_make_release" unless="is.windows">
+    <target name="build_make40_debug" unless="is.windows">
+        <!-- NO-OP -->
+    </target>
+    <target name="build_make42_debug" unless="is.windows">
+        <!-- NO-OP -->
+    </target>
+    <target name="build_make40_release" unless="is.windows">
+        <!-- NO-OP -->
+    </target>
+    <target name="build_make42_release" unless="is.windows">
         <!-- NO-OP -->
     </target>
     <target name="build_vc05_codecoverage" if="is.windows">
@@ -100,7 +121,7 @@
     <target name="build_vc10_release" if="is.windows">
         <!-- NO-OP -->
     </target>
-    <target name="unittest_make_codecoverage" unless="is.windows">
+    <target name="unittest_make40_codecoverage" unless="is.windows">
         <exec executable="lcov" dir="../build_codecoverage">
             <arg line="--directory CMakeFiles/${ServiceName}.dir --zerocounters" />
         </exec>
@@ -121,13 +142,46 @@
             <arg line="--output-directory lcov-report lcov.info" />
         </exec>
     </target>
-    <target name="unittest_make_debug" unless="is.windows">
+    <target name="unittest_make42_codecoverage" unless="is.windows">
+        <exec executable="lcov" dir="../build_codecoverage">
+            <arg line="--directory CMakeFiles/${ServiceName}.dir --zerocounters" />
+        </exec>
+        <exec executable="ruby" failonerror="true">
+            <env key="BP_OUTPUT_DIR" value="build_codecoverage/${ServiceName}" />
+            <arg line="./unittest.rb --runner cppunit_runner" />
+        </exec>
+        <delete dir="../build_codecoverage/lcov_results" />
+        <mkdir dir="../build_codecoverage/lcov_results" />
+        <exec executable="lcov" dir="../build_codecoverage/lcov_results">
+            <arg line="--capture --directory ../CMakeFiles/${ServiceName}.dir --output-file lcov.info.tmp --gcov-tool /usr/bin/gcov-4.2" />
+        </exec>
+        <exec executable="lcov" dir="../build_codecoverage/lcov_results">
+            <arg line="--remove lcov.info.tmp ${CoverageStrip_make} --output-file lcov.info" />
+        </exec>
+        <delete dir="../build_codecoverage/lcov_results/lcov-report" />
+        <exec executable="genhtml" dir="../build_codecoverage/lcov_results">
+            <arg line="--output-directory lcov-report lcov.info" />
+        </exec>
+    </target>
+    <target name="unittest_make40_debug" unless="is.windows">
         <exec executable="ruby" failonerror="true">
             <env key="BP_OUTPUT_DIR" value="build_debug/${ServiceName}" />
             <arg line="./unittest.rb --runner cppunit_runner" />
         </exec>
     </target>
-    <target name="unittest_make_release" unless="is.windows">
+    <target name="unittest_make42_debug" unless="is.windows">
+        <exec executable="ruby" failonerror="true">
+            <env key="BP_OUTPUT_DIR" value="build_debug/${ServiceName}" />
+            <arg line="./unittest.rb --runner cppunit_runner" />
+        </exec>
+    </target>
+    <target name="unittest_make40_release" unless="is.windows">
+        <exec executable="ruby" failonerror="true">
+            <env key="BP_OUTPUT_DIR" value="build_release/${ServiceName}" />
+            <arg line="./unittest.rb --runner cppunit_runner" />
+        </exec>
+    </target>
+    <target name="unittest_make42_release" unless="is.windows">
         <exec executable="ruby" failonerror="true">
             <env key="BP_OUTPUT_DIR" value="build_release/${ServiceName}" />
             <arg line="./unittest.rb --runner cppunit_runner" />
@@ -232,13 +286,13 @@ ruby .\unittest.rb --runner cppunit_runner
         </exec>
         <delete file="x1.bat" />
     </target>
-    <target name="clean_codecoverage" depends="clean_make_codecoverage,clean_vc08_codecoverage" />
-    <target name="clean_debug" depends="clean_make_debug,clean_vc08_debug" />
-    <target name="clean_release" depends="clean_make_release,clean_vc08_release" />
-    <target name="build_codecoverage" depends="build_make_codecoverage,build_vc08_codecoverage" />
-    <target name="build_debug" depends="build_make_debug,build_vc08_debug" />
-    <target name="build_release" depends="build_make_release,build_vc08_release" />
-    <target name="unittest_codecoverage" depends="unittest_make_codecoverage,unittest_vc08_codecoverage" />
-    <target name="unittest_debug" depends="unittest_make_debug,unittest_vc08_debug" />
-    <target name="unittest_release" depends="unittest_make_release,unittest_vc08_release" />
+    <target name="clean_codecoverage" depends="clean_make40_codecoverage,clean_vc08_codecoverage" />
+    <target name="clean_debug" depends="clean_make40_debug,clean_vc08_debug" />
+    <target name="clean_release" depends="clean_make40_release,clean_vc08_release" />
+    <target name="build_codecoverage" depends="build_make40_codecoverage,build_vc08_codecoverage" />
+    <target name="build_debug" depends="build_make40_debug,build_vc08_debug" />
+    <target name="build_release" depends="build_make40_release,build_vc08_release" />
+    <target name="unittest_codecoverage" depends="unittest_make40_codecoverage,unittest_vc08_codecoverage" />
+    <target name="unittest_debug" depends="unittest_make40_debug,unittest_vc08_debug" />
+    <target name="unittest_release" depends="unittest_make40_release,unittest_vc08_release" />
 </project>
