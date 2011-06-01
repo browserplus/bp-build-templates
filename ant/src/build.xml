@@ -64,7 +64,7 @@
     <target name="build_make40_codecoverage" unless="is.windows">
         <mkdir dir="../build_codecoverage" />
         <exec executable="cmake" dir="../build_codecoverage" failonerror="true">
-            <arg line="-G &quot;Unix Makefiles&quot; -DCMAKE_BUILD_TYPE:STRING=CodeCoverage -DOSX10.4_BUILD=true ../src" />
+            <arg line="-G &quot;Unix Makefiles&quot; -DCMAKE_BUILD_TYPE:STRING=CodeCoverage -DOSX10.4_BUILD:BOOL=ON=true ../src" />
         </exec>
         <exec executable="make" dir="../build_codecoverage" failonerror="true">
             <arg line="-j3" />
@@ -82,7 +82,7 @@
     <target name="build_make40_debug" unless="is.windows">
         <mkdir dir="../build_debug" />
         <exec executable="cmake" dir="../build_debug" failonerror="true">
-            <arg line="-G &quot;Unix Makefiles&quot; -DCMAKE_BUILD_TYPE:STRING=Debug -DOSX10.4_BUILD=true ../src" />
+            <arg line="-G &quot;Unix Makefiles&quot; -DCMAKE_BUILD_TYPE:STRING=Debug -DOSX10.4_BUILD:BOOL=ON=true ../src" />
         </exec>
         <exec executable="make" dir="../build_debug" failonerror="true">
             <arg line="-j3" />
@@ -100,7 +100,7 @@
     <target name="build_make40_release" unless="is.windows">
         <mkdir dir="../build_release" />
         <exec executable="cmake" dir="../build_release" failonerror="true">
-            <arg line="-G &quot;Unix Makefiles&quot; -DCMAKE_BUILD_TYPE:STRING=Release -DOSX10.4_BUILD=true ../src" />
+            <arg line="-G &quot;Unix Makefiles&quot; -DCMAKE_BUILD_TYPE:STRING=Release -DOSX10.4_BUILD:BOOL=ON=true ../src" />
         </exec>
         <exec executable="make" dir="../build_release" failonerror="true">
             <arg line="-j3" />
