@@ -49,6 +49,12 @@ IF (NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE "Debug")
 ENDIF ()
 
+IF (OSX10.4_BUILD)
+  MESSAGE("\n**** DOING AN OSX10.4 BUILD ****\n")
+ELSE ()
+  MESSAGE("\n**** To do an osx10.4 build, do cmake -DOSX10.4_BUILD=true ... ****\n")
+ENDIF()
+
 # Now set up the build configurations.
 IF (WIN32)
   SET(win32Defs "/DWINDOWS /D_WINDOWS /DWIN32 /D_WIN32 /DXP_WIN32 /DUNICODE /D_UNICODE /DWIN32_LEAN_AND_MEAN /DNOSOUND /DNOCOMM /DNOMCX /DNOSERVICE /DNOIME /DNORPC")
@@ -111,12 +117,16 @@ ELSE ()
     IF (OSX10.4_BUILD) 
       SET(CMAKE_C_COMPILER gcc-4.0)
       SET(CMAKE_CXX_COMPILER g++-4.0)
-      SET (CMAKE_OSX_DEPLOYMENT_TARGET "10.4"
-           CACHE STRING "Compile for tiger deployment" FORCE)
+      IF ("${CMAKE_BUILD_TYPE}" STREQUAL "CodeCoverage") 
+        MESSAGE(FATAL_ERROR "OSX CodeCoverage build not supported on 10.4 due to XCode shipping incorrect libgcov.a binary")
+      ELSE ()
+        SET (CMAKE_OSX_DEPLOYMENT_TARGET "10.4"
+             CACHE STRING "Compile for tiger deployment" FORCE)
+        SET(minVersionFlag "-mmacosx-version-min=10.4")
+      ENDIF ()
       SET(CMAKE_OSX_SYSROOT "/Developer/SDKs/MacOSX10.4u.sdk"
           CACHE STRING "Compile for tiger deployment" FORCE)
       SET(isysrootFlag "-isysroot ${CMAKE_OSX_SYSROOT}")
-      SET(minVersionFlag "-mmacosx-version-min=10.4")
       SET(CMAKE_FRAMEWORK_PATH "${CMAKE_OSX_SYSROOT}/System/Library/Frameworks"
           CACHE STRING "use 10.4 frameworks" FORCE)
       SET(CMAKE_XCODE_ATTRIBUTE_GCC_VERSION "4.0"
@@ -198,13 +208,21 @@ MACRO (BPAddCPPService)
   FOREACH(LIB ${LIBS_RELEASE})
     TARGET_LINK_LIBRARIES(${SERVICE_NAME} optimized ${LIB})
   ENDFOREACH()
-  #
-  # Pre-build step, build our externals.
-  ADD_CUSTOM_TARGET(${SERVICE_NAME}Externals ALL
-                    COMMAND ruby build.rb
-                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../external"
-                    COMMENT Building externals...)
-  ADD_DEPENDENCIES(${SERVICE_NAME} ${SERVICE_NAME}Externals)
+  # XXX when 10.4 dropped, "else" clause becomes the only one
+  # XXX (provided that 'osx10.4' logic removed from build.rb)
+  IF (OSX10.4_BUILD)
+    ADD_CUSTOM_TARGET(${SERVICE_NAME}Externals ALL
+                      COMMAND ruby build.rb osx10.4
+                      WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../external"
+                      COMMENT Building externals...)
+    ADD_DEPENDENCIES(${SERVICE_NAME} ${SERVICE_NAME}Externals)
+  ELSE ()
+    ADD_CUSTOM_TARGET(${SERVICE_NAME}Externals ALL
+                      COMMAND ruby build.rb
+                      WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../external"
+                      COMMENT Building externals...)
+    ADD_DEPENDENCIES(${SERVICE_NAME} ${SERVICE_NAME}Externals)
+  ENDIF ()
   #
   # Copy in manifest.
   GET_TARGET_PROPERTY(loc ${SERVICE_NAME} LOCATION)
@@ -249,13 +267,21 @@ MACRO (BPAddPythonService)
     SET(ALL_DEPS ${ALL_DEPS} ${MY_DST})
   ENDFOREACH()
   ADD_CUSTOM_TARGET(${SERVICE_NAME} ALL DEPENDS ${ALL_DEPS})
-  #
-  # Pre-build step, build our externals.
-  ADD_CUSTOM_TARGET(${SERVICE_NAME}Externals ALL
-                    COMMAND ruby build.rb
-                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../external"
-                    COMMENT Building externals...)
-  ADD_DEPENDENCIES(${SERVICE_NAME} ${SERVICE_NAME}Externals)
+  # XXX when 10.4 dropped, "else" clause becomes the only one
+  # XXX (provided that 'osx10.4' logic removed from build.rb)
+  IF (OSX10.4_BUILD)
+    ADD_CUSTOM_TARGET(${SERVICE_NAME}Externals ALL
+                      COMMAND ruby build.rb osx10.4
+                      WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../external"
+                      COMMENT Building externals...)
+    ADD_DEPENDENCIES(${SERVICE_NAME} ${SERVICE_NAME}Externals)
+  ELSE ()
+    ADD_CUSTOM_TARGET(${SERVICE_NAME}Externals ALL
+                      COMMAND ruby build.rb
+                      WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../external"
+                      COMMENT Building externals...)
+    ADD_DEPENDENCIES(${SERVICE_NAME} ${SERVICE_NAME}Externals)
+  ENDIF ()
   #
   # Copy in manifest.
   GET_TARGET_PROPERTY(loc ${SERVICE_NAME} LOCATION)
@@ -289,13 +315,21 @@ MACRO (BPAddRubyService)
     SET(ALL_DEPS ${ALL_DEPS} ${MY_DST})
   ENDFOREACH()
   ADD_CUSTOM_TARGET(${SERVICE_NAME} ALL DEPENDS ${ALL_DEPS})
-  #
-  # Pre-build step, build our externals.
-  ADD_CUSTOM_TARGET(${SERVICE_NAME}Externals ALL
-                    COMMAND ruby build.rb
-                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../external"
-                    COMMENT Building externals...)
-  ADD_DEPENDENCIES(${SERVICE_NAME} ${SERVICE_NAME}Externals)
+  # XXX when 10.4 dropped, "else" clause becomes the only one
+  # XXX (provided that 'osx10.4' logic removed from build.rb)
+  IF (OSX10.4_BUILD)
+    ADD_CUSTOM_TARGET(${SERVICE_NAME}Externals ALL
+                      COMMAND ruby build.rb osx10.4
+                      WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../external"
+                      COMMENT Building externals...)
+    ADD_DEPENDENCIES(${SERVICE_NAME} ${SERVICE_NAME}Externals)
+  ELSE ()
+    ADD_CUSTOM_TARGET(${SERVICE_NAME}Externals ALL
+                      COMMAND ruby build.rb
+                      WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../external"
+                      COMMENT Building externals...)
+    ADD_DEPENDENCIES(${SERVICE_NAME} ${SERVICE_NAME}Externals)
+  ENDIF ()
   #
   # Copy in manifest.
   GET_TARGET_PROPERTY(loc ${SERVICE_NAME} LOCATION)
